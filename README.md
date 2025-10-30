@@ -84,7 +84,7 @@ POST /v1/calculate-pmt
 
 Request Body:
 
-```json
+```jsonc
 {
     "rate": {
         "value": "string" // Interest rate per period (e.g., monthly rate)
@@ -104,7 +104,7 @@ Request Body:
 
 #### Example cURL Request
 
-```json
+```bash
 curl --location 'http://localhost:50052/v1/calculate-pmt' \
 --header 'Content-Type: application/json' \
 --data '{
