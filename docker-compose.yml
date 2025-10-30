@@ -1,0 +1,8 @@
+services:
+  loan-repayment-calculator:
+    build: .
+    ports:
+      - "50051:50051"
+      - "50052:50052"
+    restart: on-failure
+

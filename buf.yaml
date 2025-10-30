@@ -1,0 +1,14 @@
+# For details on buf.yaml configuration, visit https://buf.build/docs/configuration/v2/buf-yaml
+version: v2
+# name: github.com/richardrigby/loan-repayment-calculator
+lint:
+  use:
+    - STANDARD
+breaking:
+  use:
+    - FILE
+modules:
+  - path: ./api/loan_payment_calculator/v1
+deps:
+  - buf.build/googleapis/googleapis
+  - buf.build/grpc-ecosystem/grpc-gateway

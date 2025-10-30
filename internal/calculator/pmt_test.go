@@ -1,12 +1,16 @@
 package calculator
 
 import (
+	"log/slog"
 	"testing"
 
 	"github.com/shopspring/decimal"
 )
 
 func TestPMT_Basic(t *testing.T) {
+	calc := &Calculator{
+		logger: slog.Default(),
+	}
 	cases := []struct {
 		name     string
 		rate     decimal.Decimal
@@ -53,7 +57,7 @@ func TestPMT_Basic(t *testing.T) {
 			}(),
 		},
 		{
-			name:     "6% per period, 18 periods, fv=50000, end",
+			name:     "6% per year, 18 years, fv=50000, end",
 			rate:     decimal.NewFromFloat(0.06).Div(decimal.NewFromInt(12)),
 			nper:     18 * 12, // 18 years monthly
 			pv:       decimal.Zero,
@@ -74,7 +78,15 @@ func TestPMT_Basic(t *testing.T) {
 
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
-			got, err := PMT(tc.rate, tc.nper, tc.pv, tc.fv, tc.pt)
+			input := PMTInput{
+				Rate:            tc.rate,
+				NumberOfPeriods: tc.nper,
+				PresentValue:    tc.pv,
+				FutureValue:     tc.fv,
+				PaymentTiming:   tc.pt,
+			}
+
+			got, err := calc.PMT(input)
 			if err != nil {
 				t.Fatalf("PMT returned unexpected error: %v", err)
 			}

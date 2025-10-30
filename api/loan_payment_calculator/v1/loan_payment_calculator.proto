@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package loan_payment_calculator.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "loan_payment_calculator/v1;loan_payment_calculator_v1";
+
+service LoanPaymentCalculatorService {
+  rpc CalculatePMT(CalculatePMTRequest) returns (CalculatePMTResponse) {
+    option (google.api.http) = {
+      post: "/v1/calculate-pmt"
+      body: "*"
+    };
+  }
+}
+
+message CalculatePMTRequest {
+  Decimal rate = 1;
+  int32 nper = 2;
+  Decimal present_value = 3;
+  optional Decimal future_value = 4;
+  optional PaymentTiming payment_timing = 5;
+}
+
+message CalculatePMTResponse {
+  Decimal payment = 1;
+}
+
+// Decimal representation as a string to preserve precision
+// The value should be a valid decimal number in string format.
+// Example: "12345.67"
+// It is the responsibility of the client and server to handle parsing and formatting.
+message Decimal {
+  string value = 1;
+}
+enum PaymentTiming {
+  PAYMENT_TIMING_UNSPECIFIED = 0;
+  PAYMENT_TIMING_END_OF_PERIOD = 1;
+  PAYMENT_TIMING_BEGINNING_OF_PERIOD = 2;
+}
