@@ -57,22 +57,28 @@ func TestPMT_Basic(t *testing.T) {
 			}(),
 		},
 		{
-			name:     "6% per year, 18 years, fv=50000, end",
-			rate:     decimal.NewFromFloat(0.06).Div(decimal.NewFromInt(12)),
-			nper:     18 * 12, // 18 years monthly
-			pv:       decimal.Zero,
-			fv:       decimal.NewFromFloat(50_000),
-			pt:       PaymentEndOfPeriod,
-			expected: decimal.NewFromFloat(129.08116086799),
+			name: "6% per year, 18 years, fv=50000, end",
+			rate: decimal.NewFromFloat(0.06).Div(decimal.NewFromInt(12)),
+			nper: 18 * 12, // 18 years monthly
+			pv:   decimal.Zero,
+			fv:   decimal.NewFromFloat(50_000),
+			pt:   PaymentEndOfPeriod,
+			expected: func() decimal.Decimal {
+				num, _ := decimal.NewFromString("129.08116086799")
+				return num
+			}(),
 		},
 		{
-			name:     "6% per year, 18 years, fv=50000, end",
-			rate:     decimal.NewFromFloat(0.06).Div(decimal.NewFromInt(12)),
-			nper:     18 * 12, // 18 years monthly
-			pv:       decimal.Zero,
-			fv:       decimal.NewFromFloat(50_000),
-			pt:       PaymentEndOfPeriod,
-			expected: decimal.NewFromFloat(129.08116086799),
+			name: "6% per year, 18 years, fv=50000, beginning",
+			rate: decimal.NewFromFloat(0.06).Div(decimal.NewFromInt(12)),
+			nper: 18 * 12, // 18 years monthly
+			pv:   decimal.Zero,
+			fv:   decimal.NewFromFloat(50_000),
+			pt:   PaymentBeginningOfPeriod,
+			expected: func() decimal.Decimal {
+				num, _ := decimal.NewFromString("128.438966037800995")
+				return num
+			}(),
 		},
 	}
 

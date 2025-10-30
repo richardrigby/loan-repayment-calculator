@@ -7,10 +7,13 @@ import (
 	"github.com/shopspring/decimal"
 )
 
+// PaymentTiming indicates when payments are due
 type PaymentTiming int32
 
 const (
+	// Payment at the end of the period
 	PaymentEndOfPeriod PaymentTiming = iota
+	// Payment at the beginning of the period
 	PaymentBeginningOfPeriod
 )
 
