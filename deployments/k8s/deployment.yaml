@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: loan-repayment-calculator-container
-        image:  docker.io/library/loan-repayment-calculator:v1.0.0
+        image:  docker.io/library/loan-repayment-calculator:38ccfcb
         ports:
         - name: grpc-port
           containerPort: 50051
