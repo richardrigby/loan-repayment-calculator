@@ -1,4 +1,5 @@
-gen:
+gen: ## Generate code from .proto files
+	@echo "Generating code from .proto files..."
 	docker build -f Dockerfile.buf -t buf-with-plugins . && docker run --rm -v "$(PWD)":/workspace buf-with-plugins generate
 
 run: ## Run the application natively
