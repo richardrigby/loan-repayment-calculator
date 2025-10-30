@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loan-repayment-calculator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loan-repayment-calculator
+  template:
+    metadata:
+      labels:
+        app: loan-repayment-calculator
+    spec:
+      containers:
+      - name: loan-repayment-calculator-container
+        image:  docker.io/library/loan-repayment-calculator:v1.0.0
+        ports:
+        - name: grpc-port
+          containerPort: 50051
+        - name: http-port
+          containerPort: 50052

@@ -15,3 +15,6 @@ test: ## Run tests
 
 clean: ## Stop and remove containers, networks, volumes, and images created by `up`.
 	@docker compose down --volumes --remove-orphans
+
+build: ## Build the Docker image
+	@docker build -t loan-repayment-calculator:v1.0.0 .
