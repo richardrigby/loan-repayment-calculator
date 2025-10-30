@@ -10,28 +10,7 @@ Commit your work to an open source repo. The repo should have instructions on ho
 
 Presentation & discussion with key stakeholders, engineering, product, and sales in the room. You have 30 mins max to present, and can choose any approach, method, tools, etc as you wish. After your presentation you can lead a 30 min discussion related to the problem and your solution with stakeholders.
 
-Description: The PMT function calculates the payment for a loan based on constant payments and a constant interest rate.
-
-Where:
-
-- P = loan amount (principal)
-- r = monthly interest rate (annual interest rate / 12)
-- n = number of payments (loan term in months)
-
-Loan Payment Formula (PMT):
-
-```
-PMT = P * r * (1 + r)^n / ((1 + r)^n - 1)
-```
-
-
-PMT = (rate * PV) / (1 - (1 + rate)^(-nper))
-
-Where:
-rate is the interest rate per period.
-PV is the present value (the loan amount).
-nper is the total number of payment periods.
-
+## PMT Function Description
 
 From [Excel documentation](https://support.microsoft.com/en-us/office/pmt-function-0214da64-9a63-4996-bc20-214433fa6441):
 
