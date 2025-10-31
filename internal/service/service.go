@@ -80,7 +80,14 @@ func grpcToDomainCalculatePMTRequest(in *pb.CalculatePMTRequest) (calculator.PMT
 	if in.PaymentTiming != nil {
 		// Convert the protobuf enum pointer to the domain enum type
 		if enumPtr := in.PaymentTiming.Enum(); enumPtr != nil {
-			paymentTiming = calculator.PaymentTiming(*enumPtr)
+			pt := *enumPtr
+			switch pt {
+			case pb.PaymentTiming_PAYMENT_TIMING_BEGINNING_OF_PERIOD:
+				paymentTiming = calculator.PaymentBeginningOfPeriod
+			default:
+				// If the enum is UNSPECIFIED or END_OF_PERIOD, set to end of period
+				paymentTiming = calculator.PaymentEndOfPeriod
+			}
 		}
 	}
 
